@@ -54,35 +54,52 @@ fun main() {
 
 // Etapa 1
 fun calcularPromedio(nota1: Double, nota2: Double): Double {
-    // Implementar aquí
-    return 0.0
+    return (nota1+nota2)/2
 }
 
 fun esAprobado(nota: Double): Boolean {
-    // Implementar aquí
-    return false
+    return nota >= 7
 }
 
 // Etapa 2
 fun calcularPromedioTresNotas(nota1: Double, nota2: Double, nota3: Double): Double {
-    // Implementar aquí
-    return 0.0
+    return (nota1+nota2+nota3)/3
 }
 
 fun obtenerEstadoAlumno(nombre: String, apellido: String, nota: Double): String {
-    // Implementar aquí
-    return ""
+    var estadoNota: String = ""
+    if (esAprobado(nota)){
+        estadoNota = "aprobado"
+    }
+    else{
+        estadoNota = "desaprobado"
+    }
+    return "El alumno $nombre $apellido está $estadoNota"
 }
 
 // Etapa 3
 fun calcularPromedioCurso(notas: List<Double>): Double {
-    // Implementar aquí
-    return 0.0
+    var sumaNotas: Double = 0.0
+    for(nota:Double in notas){
+        sumaNotas += nota
+    }
+    return sumaNotas/notas.size
 }
 
-fun obtenerAlumnosAprobados(nombres: List<String>, notas: List<Double>): List<String> {
-    // Implementar aquí
-    return emptyList()
+fun obtenerAlumnosAprobados(nombres: List<String>, notas: List<Double>):List<String> {
+    var aprobadosNotasIndex = arrayListOf<Int>()
+    var aprobadosAlumnos = arrayListOf<String>()
+
+    for(notaIndex in 0..notas.size-1){
+        if (esAprobado(notas[notaIndex])){
+            aprobadosNotasIndex.add(notaIndex)
+        }
+    }
+
+    for(i in aprobadosNotasIndex){
+        aprobadosAlumnos.add(nombres[i])
+    }
+    return aprobadosAlumnos
 }
 
 // Etapa 4
