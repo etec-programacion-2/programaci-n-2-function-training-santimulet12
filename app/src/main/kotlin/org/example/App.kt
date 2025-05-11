@@ -104,21 +104,48 @@ fun obtenerAlumnosAprobados(nombres: List<String>, notas: List<Double>):List<Str
 
 // Etapa 4
 fun generarBoletin(nombre: String, materias: List<String>, notas: List<Double>): String {
-    // Implementar aquí
-    return ""
+    val notasMap: MutableMap<String, Double> = mutableMapOf()
+
+    for (i in 0 until materias.size) {
+        notasMap[materias[i]] = notas[i]
+    }
+
+    val materiasInfo = notasMap.entries.joinToString("\n") { (materia, nota) ->
+        "$materia: $nota"
+    }
+
+    return "Alumno: $nombre \nMaterias:\n$materiasInfo"
 }
 
 fun obtenerNotaMasAlta(notas: List<Double>): Double {
-    // Implementar aquí
-    return 0.0
+    var aux: Double = notas[0]
+
+    for (nota: Double in notas){
+        if (nota > aux){
+            aux = nota
+        }
+    }
+    return aux
 }
 
 fun obtenerNotaMasBaja(notas: List<Double>): Double {
-    // Implementar aquí
-    return 0.0
+    var aux: Double = notas[0]
+
+    for (nota: Double in notas){
+        if (nota < aux){
+            aux = nota
+        }
+    }
+    return aux
 }
 
 fun contarAprobados(notas: List<Double>): Int {
-    // Implementar aquí
-    return 0
+    var aprobadosIndex = arrayListOf<Int>()
+
+    for (notaIndx: Int in 0..notas.size-1){
+        if (esAprobado(notas[notaIndx])){
+            aprobadosIndex.add(notaIndx)
+        }
+    }
+    return aprobadosIndex.size
 }
